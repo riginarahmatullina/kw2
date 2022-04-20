@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, redirect, jsonify
-from utils import *
+from flask import Flask, render_template, request, jsonify
+from utils import get_posts_all, get_posts_by_user, search_for_posts
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
 @app.route('/posts/')
 def index():
     posts = get_posts_all()
@@ -38,7 +37,6 @@ def search_page():
     search_by = request.args['s']
     posts = search_for_posts(search_by)
     return render_template("search.html", posts=posts)
-
 
 
 @app.route('/users/<user_name>')

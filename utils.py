@@ -2,13 +2,16 @@ import json
 
 POST_PATH = "data/data.json"
 COMMENTS_PATH = "data/comments.json"
+
+
 def get_posts_all():
     try:
-        with open(POST_PATH, "r", encoding='utf-8')as file:
+        with open(POST_PATH, "r", encoding='utf-8') as file:
             data = json.load(file)
         return data
     except FileNotFoundError:
         print("Файл не найден")
+
 
 def get_posts_by_user(post_id):
     posts = get_posts_all()
@@ -21,6 +24,7 @@ def get_posts_by_user(post_id):
             count = len(posts_list)
     return posts_list
 
+
 def get_comments_by_post_id(post_id):
     with open(COMMENTS_PATH, "r", encoding='utf-8') as file:
         comments = json.load(file)
@@ -29,6 +33,7 @@ def get_comments_by_post_id(post_id):
         if comment["post_id"] == post_id:
             comments_list.append(comment)
     return comments_list
+
 
 def search_for_posts(query):
     posts = get_posts_all()

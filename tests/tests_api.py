@@ -1,10 +1,8 @@
 from app import app
-from flask import Flask, jsonify
-import pytest
 api_keys = ['poster_name', 'poster_avatar', 'pic', 'content', 'views_count', 'likes_count', 'pk']
 
 
-#Проверка всех постов
+'''Проверка всех постов'''
 def test_posts():
     api_keys = ['poster_name', 'poster_avatar', 'pic', 'content', 'views_count', 'likes_count', 'pk']
     response = app.test_client().get('/api/posts/')
@@ -16,7 +14,7 @@ def test_posts():
             assert api_post_key in api_keys
 
 
-#Проверка одного поста
+'''Проверка одного поста'''
 def test_post_by_user():
     api_keys = ['poster_name', 'poster_avatar', 'pic', 'content', 'views_count', 'likes_count', 'pk', 'comments']
     response = app.test_client().get('/api/posts/1/')
